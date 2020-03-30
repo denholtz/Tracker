@@ -5,9 +5,87 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App {
+  text-align: center;
+  width: 100vw;
+  height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+}
+
+div{
+  display:inline-block;
+}
+
+#control-panel{
+  flex-basis: 20%;
+  height: calc(100% - 40px);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#positive-track{
+  flex-basis: 40%;
+  height: calc(100% - 40px);
+}
+
+#crashed-track {
+  flex-basis: 40%;
+  height: calc(100% - 40px);
+}
+
+.control-panel-component {
+  width: 100%;
+  display: flex;
+  text-align: center;
+}
+
+.track-step {
+  width: 30px;
+  height: 12px;
+}
+/* 
+.tracker-section {
+
+} */
+
+.tracker-table {
+  margin: 0px auto;
+  max-height: 100%;
+}
+
+.tracker-table-row {
+  min-height: unset;
+  height: 1vh;
+  font-size: 1.6vh;
+}
+
+.piece {
+  border: 1px solid black;
+}
+
+@media only screen and (max-width: 600px) {
+  #control-panel{
+    width: 100%;
+    height: 20vh;
+  }
+
+  #positive-track{
+    width: 50%;
+    height: 80vh;
+  }
+
+  #crashed-track {
+    width: 50%;
+    height: 80vh;
+  }
+
+  .control-panel-component{
+    width: 50%
+  }
 }
