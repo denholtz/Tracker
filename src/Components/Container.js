@@ -4,6 +4,7 @@ import ControlPanel from './ControlPanel';
 import PositiveTrack from './PositiveTrack.js';
 import CrashedTracked from './CrashedTrack';
 import { v4 as uuidv4 } from 'uuid';
+import io from 'socket.io-client';
 
 class Container extends React.Component {
     state = {
@@ -16,6 +17,11 @@ class Container extends React.Component {
 
     componentDidMount = () => {
         // fetch initial game state
+        let socket = io('http://localhost:8000');
+        socket.on('update', gameState => {
+            this.setState({...this.state, gameState});
+        })
+        this.setState({...this.state, socket})
     }
 
     handleChange = (e) => {
@@ -26,8 +32,10 @@ class Container extends React.Component {
     }
 
     setStateAndEmit = (state) => {
+        console.log('hi');
         this.setState(state);
         // emit state.gameState
+        this.state.socket.emit('update', state.gameState);
     }
 
     addPiece = (piece) => {
