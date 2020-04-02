@@ -17,7 +17,10 @@ class Container extends React.Component {
 
     componentDidMount = () => {
         // fetch initial game state
-        let socket = io('http://localhost:8000');
+        let socketServer = window.location.origin === 'http://localhost:3000' ?
+                           'http://localhost:3001' :
+                           window.location.origin;
+        let socket = io(socketServer);
         socket.on('update', gameState => {
             this.setState({...this.state, gameState});
         })
@@ -99,7 +102,7 @@ class Container extends React.Component {
                     pieces: []
                 }
             }
-            
+
             this.setStateAndEmit(nextState);
         }
     }
@@ -108,7 +111,7 @@ class Container extends React.Component {
         return (
             <React.Fragment>
                 <div id='control-panel'>
-                    <ControlPanel 
+                    <ControlPanel
                         name={this.state.name}
                         color={this.state.color}
                         handleChange={this.handleChange}
@@ -118,7 +121,7 @@ class Container extends React.Component {
                 </div>
 
                 <div id='positive-track'>
-                    <PositiveTrack 
+                    <PositiveTrack
                         addPiece={this.addPiece}
                         gameState={this.state.gameState}
                         movePiece={this.movePiece}
@@ -126,7 +129,7 @@ class Container extends React.Component {
                 </div>
 
                 <div id='crashed-track'>
-                    <CrashedTracked 
+                    <CrashedTracked
                         addPiece={this.addPiece}
                         gameState={this.state.gameState}
                         movePiece={this.movePiece}
