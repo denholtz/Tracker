@@ -11,7 +11,8 @@ class Container extends React.Component {
         name: '',
         color: '#000000',
         gameState: {
-            pieces: []
+            pieces: [],
+            round: 1
         }
     }
 
@@ -35,7 +36,6 @@ class Container extends React.Component {
     }
 
     setStateAndEmit = (state) => {
-        console.log('hi');
         this.setState(state);
         // emit state.gameState
         this.state.socket.emit('update', state.gameState);
@@ -53,6 +53,7 @@ class Container extends React.Component {
         let nextState = {
             ...this.state,
             gameState: {
+                ...this.state.gameState,
                 pieces: [
                     ...this.state.gameState.pieces,
                     newPiece
@@ -74,6 +75,7 @@ class Container extends React.Component {
         let nextState = {
             ...this.state,
             gameState: {
+                ...this.state.gameState,
                 pieces
             }
         }
@@ -87,6 +89,7 @@ class Container extends React.Component {
         let nextState = {
             ...this.state,
             gameState: {
+                ...this.state.gameState,
                 pieces
             }
         }
@@ -107,6 +110,30 @@ class Container extends React.Component {
         }
     }
 
+    topOfTheRound = () => {
+        this.setStateAndEmit({
+          ...this.state,
+          gameState: {
+            ...this.state.gameState,
+            round: this.state.gameState.round + 1
+          }
+
+        });
+    }
+
+    decrementRound = () => {
+        if (this.state.gameState.round <= 1) {
+            return;
+        }
+        this.setStateAndEmit({
+            ...this.state,
+            gameState: {
+              ...this.state.gameState,
+              round: this.state.gameState.round - 1
+            }
+        });
+    }
+
     render = (props) => {
         return (
             <React.Fragment>
@@ -117,6 +144,9 @@ class Container extends React.Component {
                         handleChange={this.handleChange}
                         clearGameState={this.clearGameState}
                         deletePiece={this.deletePiece}
+                        round={this.state.gameState.round}
+                        topOfTheRound={this.topOfTheRound}
+                        decrementRound={this.decrementRound}
                     />
                 </div>
 

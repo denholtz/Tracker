@@ -33,6 +33,14 @@ const ControlPanel = (props) => {
             <button onClick={props.clearGameState}>
                 Clear Game
             </button>
+
+            <button onClick={props.topOfTheRound}>
+                Top of the Round ({props.round})
+            </button>
+
+            <button onClick={props.decrementRound}>
+                Go Back In Time
+            </button>
         </React.Fragment>
     )
 }
