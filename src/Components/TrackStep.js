@@ -9,6 +9,8 @@ const TrackStep = (props) => {
     }
 
     const handleDrop = (e) => {
+        e.preventDefault();   // On Firefox, failing to do this reloads the page at about:blank
+
         let dragInfo = JSON.parse(e.dataTransfer.getData('text'));
 
         if(dragInfo.type === 'add'){
@@ -28,7 +30,7 @@ const TrackStep = (props) => {
     }
 
     let pieces = props.gameState.pieces.filter((e) => e.initiative === props.initiative && e.acted === props.acted);
-    
+
     let content = pieces.length ? pieces.map((e, i) => <Piece key={i} piece={e}/>) : '';
 
     return (
