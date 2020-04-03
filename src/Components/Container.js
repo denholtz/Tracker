@@ -6,14 +6,16 @@ import CrashedTracked from './CrashedTrack';
 import { v4 as uuidv4 } from 'uuid';
 import io from 'socket.io-client';
 
+const DEFAULT_GAMESTATE = {
+  pieces: [],
+  round: 1
+}
+
 class Container extends React.Component {
     state = {
         name: '',
         color: '#000000',
-        gameState: {
-            pieces: [],
-            round: 1
-        }
+        gameState: DEFAULT_GAMESTATE
     }
 
     componentDidMount = () => {
@@ -23,6 +25,8 @@ class Container extends React.Component {
                            window.location.origin;
         let socket = io(socketServer);
         socket.on('update', gameState => {
+            console.log('Got new state from server');
+            console.log(gameState)
             this.setState({...this.state, gameState});
         })
         this.setState({...this.state, socket})
@@ -101,9 +105,7 @@ class Container extends React.Component {
         if(window.confirm('Really clear the game state? There\'s no going back.')){
             let nextState = {
                 ...this.state,
-                gameState: {
-                    pieces: []
-                }
+                gameState: DEFAULT_GAMESTATE
             }
 
             this.setStateAndEmit(nextState);
