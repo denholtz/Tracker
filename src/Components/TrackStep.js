@@ -33,7 +33,8 @@ const TrackStep = (props) => {
 
 
     // Determine whether our pieces are next to act
-    let maxInitiative = Math.max(...pieces.map((e) => e.initiative));
+    let piecesToAct = pieces.filter(e => !e.acted);
+    let maxInitiative = Math.max(...piecesToAct.map((e) => e.initiative));
     let nextToAct = (!props.acted && props.initiative === maxInitiative);
 
     // Filter just the pieces that belong here and make the content out of them
