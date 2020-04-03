@@ -6,13 +6,19 @@ const Piece = (props) => {
         e.dataTransfer.setData('text', JSON.stringify({type: 'move', piece: props.piece}));
     }
 
+    let classes;
+    if (props.nextToAct) {
+      classes = 'piece nextToAct';
+    } else {
+      classes = 'piece';
+    }
     return (
-        <span 
+        <span
             draggable={true}
             onDragStart={handleDragStart}
-            title={props.piece.name} 
+            title={props.piece.name}
             style={{color: props.piece.color}}
-            className='piece'
+            className={classes}
         >
             {props.piece.name[0].toUpperCase()}
         </span>

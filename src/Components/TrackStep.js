@@ -29,9 +29,16 @@ const TrackStep = (props) => {
         }
     }
 
-    let pieces = props.gameState.pieces.filter((e) => e.initiative === props.initiative && e.acted === props.acted);
+    let pieces = props.gameState.pieces;
 
-    let content = pieces.length ? pieces.map((e, i) => <Piece key={i} piece={e}/>) : '';
+
+    // Determine whether our pieces are next to act
+    let maxInitiative = Math.max(...pieces.map((e) => e.initiative));
+    let nextToAct = (!props.acted && props.initiative === maxInitiative);
+
+    // Filter just the pieces that belong here and make the content out of them
+    let ourPieces = pieces.filter((e) => e.initiative === props.initiative && e.acted === props.acted);
+    let content = ourPieces.length ? ourPieces.map((e, i) => <Piece key={i} piece={e} nextToAct={nextToAct}/>) : '';
 
     return (
         <div className='track-step' onDragOver={onDragOver} onDrop={handleDrop}>

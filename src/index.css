@@ -49,7 +49,7 @@ div{
   width: 30px;
   height: 12px;
 }
-/* 
+/*
 .tracker-section {
 
 } */
@@ -67,6 +67,10 @@ div{
 
 .piece {
   border: 1px solid black;
+}
+
+.nextToAct {
+  border: 3px solid red;
 }
 
 @media only screen and (max-width: 600px) {
