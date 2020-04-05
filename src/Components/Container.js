@@ -72,6 +72,16 @@ class Container extends React.Component {
 
         pieces.forEach((e, i) => {
             if(e.id === piece.id){
+                console.log(`Moved piece from ${e.initiative} to ${piece.initiative} `)
+                if (e.initiative <= 0 && piece.initiative > 0) {
+                    console.log(`Piece ${e.name} has recovered from crash`)
+                    piece.mostRecentCrashRecovery = this.state.gameState.round;
+                }
+                if (e.initiative > 0 && piece.initiative <= 0) {
+                    console.log(`Piece ${e.name} gets crashed`)
+                    piece.mostRecentCrash = this.state.gameState.round;
+                    piece.hadActedAtCrash = piece.acted;
+                }
                 pieces[i] = piece;
             }
         })

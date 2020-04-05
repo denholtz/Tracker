@@ -12,11 +12,28 @@ const Piece = (props) => {
     } else {
       classes = 'piece';
     }
+
+    let title = props.piece.name;
+    if (props.piece.mostRecentCrash && props.piece.initiative <= 0) {
+      let roundsCrashed = props.gameState.round - props.piece.mostRecentCrash;
+      if (props.piece.acted) {
+        roundsCrashed++;
+      }
+      if (props.piece.hadActedAtCrash) {
+        roundsCrashed--;
+      }
+
+      title += `\n  Crashed for ${roundsCrashed} (Crashed in ${props.piece.mostRecentCrash})`
+    }
+    if (props.piece.mostRecentCrashRecovery && props.piece.initiative > 0) {
+      title += `\n  Recovered from crash in ${props.piece.mostRecentCrashRecovery}`
+    }
+
     return (
         <span
             draggable={true}
             onDragStart={handleDragStart}
-            title={props.piece.name}
+            title={title}
             style={{color: props.piece.color}}
             className={classes}
         >
