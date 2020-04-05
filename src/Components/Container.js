@@ -6,19 +6,27 @@ import CrashedTracked from './CrashedTrack';
 import { v4 as uuidv4 } from 'uuid';
 import io from 'socket.io-client';
 
+const DEFAULT_GAMESTATE = {
+  pieces: [],
+  round: 1
+}
+
 class Container extends React.Component {
     state = {
         name: '',
         color: '#000000',
-        gameState: {
-            pieces: []
-        }
+        gameState: DEFAULT_GAMESTATE
     }
 
     componentDidMount = () => {
         // fetch initial game state
-        let socket = io(window.location.origin === 'http://localhost:3000' ? 'http://localhost:3001' : window.location.origin);
+        let socketServer = window.location.origin === 'http://localhost:3000' ?
+                           'http://localhost:3001' :
+                           window.location.origin;
+        let socket = io(socketServer);
         socket.on('update', gameState => {
+            console.log('Got new state from server');
+            console.log(gameState)
             this.setState({...this.state, gameState});
         })
         this.setState({...this.state, socket})
@@ -48,6 +56,7 @@ class Container extends React.Component {
         let nextState = {
             ...this.state,
             gameState: {
+                ...this.state.gameState,
                 pieces: [
                     ...this.state.gameState.pieces,
                     newPiece
@@ -62,6 +71,16 @@ class Container extends React.Component {
 
         pieces.forEach((e, i) => {
             if(e.id === piece.id){
+                console.log(`Moved piece from ${e.initiative} to ${piece.initiative} `)
+                if (e.initiative <= 0 && piece.initiative > 0) {
+                    console.log(`Piece ${e.name} has recovered from crash`)
+                    piece.mostRecentCrashRecovery = this.state.gameState.round;
+                }
+                if (e.initiative > 0 && piece.initiative <= 0) {
+                    console.log(`Piece ${e.name} gets crashed`)
+                    piece.mostRecentCrash = this.state.gameState.round;
+                    piece.hadActedAtCrash = piece.acted;
+                }
                 pieces[i] = piece;
             }
         })
@@ -69,6 +88,7 @@ class Container extends React.Component {
         let nextState = {
             ...this.state,
             gameState: {
+                ...this.state.gameState,
                 pieces
             }
         }
@@ -82,6 +102,7 @@ class Container extends React.Component {
         let nextState = {
             ...this.state,
             gameState: {
+                ...this.state.gameState,
                 pieces
             }
         }
@@ -93,30 +114,62 @@ class Container extends React.Component {
         if(window.confirm('Really clear the game state? There\'s no going back.')){
             let nextState = {
                 ...this.state,
-                gameState: {
-                    pieces: []
-                }
+                gameState: DEFAULT_GAMESTATE
             }
-            
+
             this.setStateAndEmit(nextState);
         }
+    }
+
+    topOfTheRound = () => {
+        let newPieces = this.state.gameState.pieces.map((piece) => {
+            return {
+               ...piece,
+               acted: false
+            }
+        })
+        this.setStateAndEmit({
+          ...this.state,
+          gameState: {
+            ...this.state.gameState,
+            pieces: newPieces,
+            round: this.state.gameState.round + 1
+          }
+
+        });
+    }
+
+    decrementRound = () => {
+        if (this.state.gameState.round <= 1) {
+            return;
+        }
+        this.setStateAndEmit({
+            ...this.state,
+            gameState: {
+              ...this.state.gameState,
+              round: this.state.gameState.round - 1
+            }
+        });
     }
 
     render = (props) => {
         return (
             <React.Fragment>
                 <div id='control-panel'>
-                    <ControlPanel 
+                    <ControlPanel
                         name={this.state.name}
                         color={this.state.color}
                         handleChange={this.handleChange}
                         clearGameState={this.clearGameState}
                         deletePiece={this.deletePiece}
+                        round={this.state.gameState.round}
+                        topOfTheRound={this.topOfTheRound}
+                        decrementRound={this.decrementRound}
                     />
                 </div>
 
                 <div id='positive-track'>
-                    <PositiveTrack 
+                    <PositiveTrack
                         addPiece={this.addPiece}
                         gameState={this.state.gameState}
                         movePiece={this.movePiece}
@@ -124,7 +177,7 @@ class Container extends React.Component {
                 </div>
 
                 <div id='crashed-track'>
-                    <CrashedTracked 
+                    <CrashedTracked
                         addPiece={this.addPiece}
                         gameState={this.state.gameState}
                         movePiece={this.movePiece}

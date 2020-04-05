@@ -99,6 +99,10 @@ div{
 
 
 /* Small screen */
+.nextToAct {
+  border: 3px solid red;
+}
+
 @media only screen and (max-width: 600px) {
   #control-panel{
     flex-basis: 100%;

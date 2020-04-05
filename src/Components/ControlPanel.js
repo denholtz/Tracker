@@ -46,11 +46,17 @@ const ControlPanel = (props) => {
                 <FontAwesomeIcon title='Drag a Piece Here to Delete It' className='control-panel-icon' icon={faTrash}/>
             </div>
 
-            <div className='control-panel-component'>
-                <button onClick={props.clearGameState}>
-                    <FontAwesomeIcon title='Drag a Piece Here to Delete It' className='control-panel-icon' icon={faRecycle}/>
-                </button>
-            </div>
+            <button onClick={props.clearGameState}>
+                Clear Game
+            </button>
+
+            <button onClick={props.topOfTheRound}>
+                Top of the Round ({props.round})
+            </button>
+
+            <button onClick={props.decrementRound}>
+                Go Back In Time
+            </button>
         </React.Fragment>
     )
 }
