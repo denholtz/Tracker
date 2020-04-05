@@ -26,7 +26,11 @@ const Piece = (props) => {
       title += `\n  Crashed for ${roundsCrashed} (Crashed in ${props.piece.mostRecentCrash})`
     }
     if (props.piece.mostRecentCrashRecovery && props.piece.initiative > 0) {
-      title += `\n  Recovered from crash in ${props.piece.mostRecentCrashRecovery}`
+      let eligibility = 'Eligible';
+      if (props.gameState.round - props.piece.mostRecentCrashRecovery <= 1) {
+        eligibility = 'Not eligible';
+      }
+      title += `\n  Recovered from crash in ${props.piece.mostRecentCrashRecovery} (${eligibility} for Break)`
     }
 
     return (
