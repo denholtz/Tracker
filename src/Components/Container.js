@@ -113,10 +113,17 @@ class Container extends React.Component {
     }
 
     topOfTheRound = () => {
+        let newPieces = this.state.gameState.pieces.map((piece) => {
+            return {
+               ...piece,
+               acted: false
+            }
+        })
         this.setStateAndEmit({
           ...this.state,
           gameState: {
             ...this.state.gameState,
+            pieces: newPieces,
             round: this.state.gameState.round + 1
           }
 
