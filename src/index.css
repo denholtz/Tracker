@@ -14,6 +14,7 @@ body {
   height: calc(100vh - 80px);
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   padding: 20px;
 }
 
@@ -22,37 +23,39 @@ div{
 }
 
 #control-panel{
-  flex-basis: 20%;
+  flex-basis: calc(15% - 30px);
   height: calc(100% - 40px);
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-}
-
-#positive-track{
-  flex-basis: 40%;
-  height: calc(100% - 40px);
-}
-
-#crashed-track {
-  flex-basis: 40%;
-  height: calc(100% - 40px);
 }
 
 .control-panel-component {
   width: 100%;
-  display: flex;
+  /* flex-basis: 33%; */
+  height: 30%;
   text-align: center;
+  margin: auto;
+}
+
+.control-panel-icon {
+  font-size: 6vh;
+}
+
+#positive-track{
+  flex-basis: calc(30% - 44px);
+  height: calc(100% - 40px);
+}
+
+#crashed-track {
+  flex-basis: calc(30% - 44px);
+  height: calc(100% - 40px);
 }
 
 .track-step {
-  width: 30px;
-  height: 12px;
+  width: 10vw;
+  height: 1.6vh;
 }
-/* 
-.tracker-section {
-
-} */
 
 .tracker-table {
   margin: 0px auto;
@@ -61,27 +64,55 @@ div{
 
 .tracker-table-row {
   min-height: unset;
-  height: 1vh;
+  max-height: 1.6vh;
   font-size: 1.6vh;
 }
 
 .piece {
   border: 1px solid black;
+  padding: .1vw .3vw;
+  border-radius: 50%;
+  font-size: 2vh;
+  margin: 0px 2px;
 }
 
+/* mediumm screen */
+@media only screen and (max-width: 1200px) {
+  #control-panel{
+    flex-basis: calc(20% - 30px);
+    height: calc(100% - 40px);
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  #positive-track{
+    flex-basis: calc(40% - 44px);
+    height: calc(100% - 40px);
+  }
+  
+  #crashed-track {
+    flex-basis: calc(40% - 44px);
+    height: calc(100% - 40px);
+  }
+}
+
+
+/* Small screen */
 @media only screen and (max-width: 600px) {
   #control-panel{
-    width: 100%;
+    flex-basis: 100%;
     height: 20vh;
+    flex-direction: row;
   }
 
   #positive-track{
-    width: 50%;
+    flex-basis: 50%;
     height: 80vh;
   }
 
   #crashed-track {
-    width: 50%;
+    flex-basis: 50%;
     height: 80vh;
   }
 

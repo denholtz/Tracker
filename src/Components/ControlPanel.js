@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faRecycle} from '@fortawesome/free-solid-svg-icons';
+
 const ControlPanel = (props) => {
 
     const handleDragStart = (e) => {
@@ -23,16 +27,30 @@ const ControlPanel = (props) => {
                     <input value={props.name} type='text' onChange={props.handleChange} name='name'/>
                     <input value={props.color} type='color' onChange={props.handleChange} name='color'/>
                 </form>
-                <span draggable={true} onDragStart={handleDragStart}>Add</span>
+                <br></br>
+                {
+                    props.name &&
+                    <span 
+                        draggable={true}
+                        onDragStart={handleDragStart}
+                        title={props.name} 
+                        style={{color: props.color, borderColor: props.color}}
+                        className='piece'
+                    >
+                        {props.name[0].toUpperCase()}
+                    </span>
+                }
             </div>
 
             <div className='control-panel-component' onDragOver={onDragOver} onDrop={handleDrop}>
-                Trash
+                <FontAwesomeIcon title='Drag a Piece Here to Delete It' className='control-panel-icon' icon={faTrash}/>
             </div>
 
-            <button onClick={props.clearGameState}>
-                Clear Game
-            </button>
+            <div className='control-panel-component'>
+                <button onClick={props.clearGameState}>
+                    <FontAwesomeIcon title='Drag a Piece Here to Delete It' className='control-panel-icon' icon={faRecycle}/>
+                </button>
+            </div>
         </React.Fragment>
     )
 }

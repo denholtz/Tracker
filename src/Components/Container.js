@@ -17,7 +17,7 @@ class Container extends React.Component {
 
     componentDidMount = () => {
         // fetch initial game state
-        let socket = io('http://localhost:8000');
+        let socket = io(window.location.origin === 'http://localhost:3000' ? 'http://localhost:3001' : window.location.origin);
         socket.on('update', gameState => {
             this.setState({...this.state, gameState});
         })
@@ -32,9 +32,7 @@ class Container extends React.Component {
     }
 
     setStateAndEmit = (state) => {
-        console.log('hi');
         this.setState(state);
-        // emit state.gameState
         this.state.socket.emit('update', state.gameState);
     }
 

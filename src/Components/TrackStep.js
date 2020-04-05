@@ -29,10 +29,10 @@ const TrackStep = (props) => {
 
     let pieces = props.gameState.pieces.filter((e) => e.initiative === props.initiative && e.acted === props.acted);
     
-    let content = pieces.length ? pieces.map((e, i) => <Piece key={i} piece={e}/>) : '';
+    let content = pieces.length ? pieces.map((e, i) => <Piece dragAction='move' key={i} piece={e}/>) : '';
 
     return (
-        <div className='track-step' onDragOver={onDragOver} onDrop={handleDrop}>
+        <div className='track-step' onDragOver={onDragOver} onDrop={handleDrop} style={{textAlign: props.acted ? 'left' : 'right'}}>
             {content}
         </div>
     )
