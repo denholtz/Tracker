@@ -74,6 +74,7 @@ div{
   border-radius: 50%;
   font-size: 2vh;
   margin: 0px 2px;
+  cursor: grab;
 }
 
 /* mediumm screen */
@@ -85,12 +86,12 @@ div{
     justify-content: space-evenly;
     align-items: center;
   }
-  
+
   #positive-track{
     flex-basis: calc(40% - 44px);
     height: calc(100% - 40px);
   }
-  
+
   #crashed-track {
     flex-basis: calc(40% - 44px);
     height: calc(100% - 40px);
