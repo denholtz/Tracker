@@ -42,6 +42,16 @@ div{
   font-size: 6vh;
 }
 
+#details-panel {
+  background-color: lightblue;
+  align-items: left;
+  text-align: left;
+}
+
+#details-list {
+  list-style-type: none;
+}
+
 #positive-track{
   flex-basis: calc(30% - 44px);
   height: calc(100% - 40px);

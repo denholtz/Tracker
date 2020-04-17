@@ -151,6 +151,30 @@ class Container extends React.Component {
             }
         });
     }
+    // handleChange = (e) => {
+    //     this.setState({
+    //         ...this.state,
+    //         [e.target.name]: e.target.value
+    //     })
+    // }
+    handleNotesChange = (e) => {
+        let newNote = e.target.value;
+        let changedPieceID = e.target.name.split('$')[0];
+        let newPieces = [...this.state.gameState.pieces];
+        newPieces.forEach((piece, i) => {
+          if (piece.id === changedPieceID) {
+              piece.notes = newNote;
+          }
+        });
+
+        this.setStateAndEmit({
+            ...this.state,
+            gameState: {
+                ...this.state.gameState,
+                pieces: newPieces
+            }
+        })
+    }
 
     render = (props) => {
         return (
@@ -165,8 +189,12 @@ class Container extends React.Component {
                         round={this.state.gameState.round}
                         topOfTheRound={this.topOfTheRound}
                         decrementRound={this.decrementRound}
+                        gameState={this.state.gameState}
+                        handleNotesChange={this.handleNotesChange}
                     />
                 </div>
+
+
 
                 <div id='positive-track'>
                     <PositiveTrack
@@ -183,6 +211,7 @@ class Container extends React.Component {
                         movePiece={this.movePiece}
                     />
                 </div>
+
             </React.Fragment>
         )
     }
