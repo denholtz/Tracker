@@ -11,6 +11,8 @@ const ControlPanel = (props) => {
     }
 
     const handleDrop = (e) => {
+        e.preventDefault(); // On Firefox, not doing this reloads the page at about:blank
+        
         let dragInfo = JSON.parse(e.dataTransfer.getData('text'));
 
         props.deletePiece(dragInfo.piece);
@@ -30,10 +32,10 @@ const ControlPanel = (props) => {
                 <br></br>
                 {
                     props.name &&
-                    <span 
+                    <span
                         draggable={true}
                         onDragStart={handleDragStart}
-                        title={props.name} 
+                        title={props.name}
                         style={{color: props.color, borderColor: props.color}}
                         className='piece'
                     >
