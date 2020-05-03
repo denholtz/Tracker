@@ -44,7 +44,12 @@ const TrackStep = (props) => {
                                                                     nextToAct={nextToAct}/>) : '';
 
     return (
-        <div className='track-step' onDragOver={onDragOver} onDrop={handleDrop} style={{textAlign: props.acted ? 'left' : 'right'}}>
+        <div 
+            // onDragEnter={props.onDragEnter} 
+            onDragOver={onDragOver} 
+            onDrop={handleDrop} 
+            style={{textAlign: props.acted ? 'left' : 'right'}}
+        >
             {content}
         </div>
     )

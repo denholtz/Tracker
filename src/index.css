@@ -42,19 +42,25 @@ div{
   font-size: 6vh;
 }
 
-#positive-track{
+/* #positive-track{
   flex-basis: calc(30% - 44px);
   height: calc(100% - 40px);
+} */
+.positive-track{
+  display:grid;
+  grid-template-columns: 12vw 2vw 12vw;
+  grid-auto-rows: 1fr;
+}
+
+.test{
+  border: 1px solid pink;
+  width: 100%;
+  height: 100%;
 }
 
 #crashed-track {
   flex-basis: calc(30% - 44px);
   height: calc(100% - 40px);
-}
-
-.track-step {
-  width: 10vw;
-  height: 1.6vh;
 }
 
 .tracker-table {
@@ -71,6 +77,7 @@ div{
 .piece {
   border: 1px solid black;
   padding: .1vw .3vw;
+  /* width: 25px; */
   border-radius: 50%;
   font-size: 2vh;
   margin: 0px 2px;
