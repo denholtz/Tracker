@@ -1,5 +1,5 @@
 import React from 'react';
-
+import WPMotesTracker from './WPMotesTracker';
 
 const DefaultPanel = (props) => {
     console.log(props.gameState);
@@ -7,7 +7,7 @@ const DefaultPanel = (props) => {
       let name = `${piece.id}$notes`
       let notes = piece.notes ? piece.notes : '';
       return <div key={i}>
-                 [{piece.initiative}] {piece.name}
+                 [{piece.initiative}] {piece.name} <WPMotesTracker />
                  <br />
                  <textarea value={notes} type='textarea'  onChange={props.handleNotesChange} name={name}/>
              </div>;

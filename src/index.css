@@ -87,6 +87,10 @@ div{
   cursor: grab;
 }
 
+.wpmCounter {
+  width: 40px;
+}
+
 /* mediumm screen */
 @media only screen and (max-width: 1200px) {
   #control-panel{
