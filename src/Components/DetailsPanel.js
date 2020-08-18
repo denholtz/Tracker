@@ -2,7 +2,6 @@ import React from 'react';
 import WPMotesTracker from './WPMotesTracker';
 
 const DetailsPanel = (props) => {
-    console.log(props.gameState);
     let parts = props.gameState.pieces.map((piece, i) => {
       let name = `${piece.id}$notes`
       let notes = piece.notes ? piece.notes : '';

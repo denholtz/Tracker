@@ -2,15 +2,13 @@ import React from 'react';
 
 const WPMotesTracker = (props) => {
   const moteChange = (e) => {
-    let motesValue = e.target.value;
+    let motesValue = e.target.value * 1;
     props.updatePiece(props.piece.id, 'motes', motesValue)
   }
   const wpChange = (e) => {
-    let wpValue = e.target.value;
+    let wpValue = e.target.value * 1;
     props.updatePiece(props.piece.id, 'wp', wpValue)
   }
-
-  console.log(`Piece has ${props.piece.motes} motes`);
 
   return (
     <span>

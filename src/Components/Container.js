@@ -50,7 +50,10 @@ class Container extends React.Component {
             ...piece,
             id: uuidv4(),
             color: this.state.color,
-            name: this.state.name
+            name: this.state.name,
+            wp: 5,
+            motes: 0,
+            notes: ''
         };
 
         let nextState = {
