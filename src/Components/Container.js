@@ -154,33 +154,8 @@ class Container extends React.Component {
             }
         });
     }
-    // handleChange = (e) => {
-    //     this.setState({
-    //         ...this.state,
-    //         [e.target.name]: e.target.value
-    //     })
-    // }
-    handleNotesChange = (e) => {
-        let newNote = e.target.value;
-        let changedPieceID = e.target.name.split('$')[0];
-        let newPieces = [...this.state.gameState.pieces];
-        newPieces.forEach((piece, i) => {
-          if (piece.id === changedPieceID) {
-              piece.notes = newNote;
-          }
-        });
-
-        this.setStateAndEmit({
-            ...this.state,
-            gameState: {
-                ...this.state.gameState,
-                pieces: newPieces
-            }
-        })
-    }
 
     updatePiece = (changedPieceID, attribute, value) => {
-      console.log(`(updatePiece) ${changedPieceID} change ${attribute} to ${value}`)
       let newPieces = [...this.state.gameState.pieces];
       newPieces.forEach((piece, i) => {
         if (piece.id === changedPieceID) {
