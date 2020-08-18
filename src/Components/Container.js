@@ -80,7 +80,10 @@ class Container extends React.Component {
             ...piece,
             id: uuidv4(),
             color: this.state.color,
-            name: this.state.name
+            name: this.state.name,
+            wp: 5,
+            motes: 0,
+            notes: ''
         };
 
         let nextState = {
@@ -181,29 +184,22 @@ class Container extends React.Component {
             }
         });
     }
-    // handleChange = (e) => {
-    //     this.setState({
-    //         ...this.state,
-    //         [e.target.name]: e.target.value
-    //     })
-    // }
-    handleNotesChange = (e) => {
-        let newNote = e.target.value;
-        let changedPieceID = e.target.name.split('$')[0];
-        let newPieces = [...this.state.gameState.pieces];
-        newPieces.forEach((piece, i) => {
-          if (piece.id === changedPieceID) {
-              piece.notes = newNote;
-          }
-        });
 
-        this.setStateAndEmit({
-            ...this.state,
-            gameState: {
-                ...this.state.gameState,
-                pieces: newPieces
-            }
-        })
+    updatePiece = (changedPieceID, attribute, value) => {
+      let newPieces = [...this.state.gameState.pieces];
+      newPieces.forEach((piece, i) => {
+        if (piece.id === changedPieceID) {
+            piece[attribute] = value;
+        }
+      });
+
+      this.setStateAndEmit({
+          ...this.state,
+          gameState: {
+              ...this.state.gameState,
+              pieces: newPieces
+          }
+      })
     }
 
     render = (props) => {
@@ -215,6 +211,7 @@ class Container extends React.Component {
                         name={this.state.name}
                         color={this.state.color}
                         handleChange={this.handleChange}
+                        updatePiece={this.updatePiece}
                         clearGameState={this.clearGameState}
                         deletePiece={this.deletePiece}
                         round={this.state.gameState.round}
@@ -225,9 +222,9 @@ class Container extends React.Component {
                     />
                 </div>
 
-                <Track 
-                    start={30} 
-                    end={1} 
+                <Track
+                    start={30}
+                    end={1}
                     innerProps={{gridContainerClassName: 'positive-track'}}
                     addPiece={this.addPiece}
                     gameState={this.state.gameState}

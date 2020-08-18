@@ -75,6 +75,7 @@ const ControlPanel = (props) => {
                 <DetailsPanel
                     gameState={props.gameState}
                     handleNotesChange={props.handleNotesChange}
+                    updatePiece={props.updatePiece}
                 />
             </div>
         </React.Fragment>
