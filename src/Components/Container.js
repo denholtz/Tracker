@@ -1,8 +1,8 @@
 import React from 'react';
 
 import ControlPanel from './ControlPanel';
-import PositiveTrack from './PositiveTrack.js';
-import CrashedTracked from './CrashedTrack';
+import Track from './Track';
+import DragTarget from './DragTarget';
 import { v4 as uuidv4 } from 'uuid';
 import io from 'socket.io-client';
 
@@ -11,11 +11,19 @@ const DEFAULT_GAMESTATE = {
   round: 1
 }
 
+let dragTargetRef = React.createRef();
+
 class Container extends React.Component {
     state = {
         name: '',
         color: '#000000',
-        gameState: DEFAULT_GAMESTATE
+        gameState: DEFAULT_GAMESTATE,
+        dragTargetState: {
+            top: 0,
+            left: 0,
+            display: 'none',
+            value: 0
+        }
     }
 
     componentDidMount = () => {
@@ -30,6 +38,21 @@ class Container extends React.Component {
             this.setState({...this.state, gameState});
         })
         this.setState({...this.state, socket})
+    }
+
+    handleDragTargetUpdate = (e, value) => {
+        console.log('update');
+        this.setState({...this.state, dragTargetState: {
+            top: e.pageY,
+            left: e.pageX,
+            display: 'block',
+            value
+        }})
+    }
+
+    handleDragTargetHide = () => {
+        console.log('hide')
+        this.setState({...this.state, dragTargetState: {...this.state.dragTargetState, display: 'none'}});
     }
 
     handleChange = (e) => {
@@ -175,6 +198,7 @@ class Container extends React.Component {
     render = (props) => {
         return (
             <React.Fragment>
+                <DragTarget dragTargetState={this.state.dragTargetState}/>
                 <div id='control-panel'>
                     <ControlPanel
                         name={this.state.name}
@@ -191,6 +215,7 @@ class Container extends React.Component {
                     />
                 </div>
 
+<<<<<<< HEAD
 
 
                 <div id='positive-track'>
@@ -209,6 +234,31 @@ class Container extends React.Component {
                     />
                 </div>
 
+=======
+                <Track 
+                    start={30} 
+                    end={1} 
+                    innerProps={{gridContainerClassName: 'positive-track'}}
+                    addPiece={this.addPiece}
+                    gameState={this.state.gameState}
+                    movePiece={this.movePiece}
+                    dragTargetRef={dragTargetRef}
+                    handleDragTargetUpdate={this.handleDragTargetUpdate}
+                    handleDragTargetHide={this.handleDragTargetHide}
+                />
+
+                <Track
+                    start={0}
+                    end={-20}
+                    innerProps={{gridContainerClassName: 'positive-track'}}
+                    addPiece={this.addPiece}
+                    gameState={this.state.gameState}
+                    movePiece={this.movePiece}
+                    dragTargetRef={dragTargetRef}
+                    handleDragTargetUpdate={this.handleDragTargetUpdate}
+                    handleDragTargetHide={this.handleDragTargetHide}
+                />
+>>>>>>> 3f8118d5a9254b3bc9d9e90dbbd7689db1fabe68
             </React.Fragment>
         )
     }
