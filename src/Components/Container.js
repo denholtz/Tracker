@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import ControlPanel from './ControlPanel';
 import Track from './Track';
@@ -250,4 +251,4 @@ class Container extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToprops)(Container);
+export default connect(mapStateToProps, mapDispatchToProps)(Container);

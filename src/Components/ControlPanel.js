@@ -1,11 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faRecycle} from '@fortawesome/free-solid-svg-icons';
 
 import DetailsPanel from './DetailsPanel';
-import { connect } from 'socket.io-client';
 
 const mapStateToProps = (state, ownProps) => ({
 

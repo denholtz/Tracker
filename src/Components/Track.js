@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import TrackStep from './TrackStep';
 
 const Track = (props) => {
@@ -12,20 +13,18 @@ const Track = (props) => {
         <div 
             className={innerProps.gridContainerClassName}>
             {steps.map((e, i) => (
-                <React.Fragment>
+                <React.Fragment key={i}>
                     <TrackStep 
                         initiative={e} 
                         acted={false} 
                         addPiece={props.addPiece}
                         movePiece={props.movePiece}
                         gameState={props.gameState}
-                        key={i + 1}
                         onDragEnter={(event) => props.handleDragTargetUpdate(event, e)}
                         onDragLeave={props.handleDragTargetHide}                           
                     />
-                    <div key={(i + 1) * 2}>{e % 2 === 0 ? e : ''}</div>
+                    <div >{e % 2 === 0 ? e : ''}</div>
                     <TrackStep 
-                        key={(i + 1) * 3}
                         initiative={e} 
                         acted={true} 
                         addPiece={props.addPiece}

@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import WPMotesTracker from './WPMotesTracker';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -34,4 +36,4 @@ const DetailsPanel = (props) => {
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DefaultPanel);
+export default connect(mapStateToProps, mapDispatchToProps)(DetailsPanel);
