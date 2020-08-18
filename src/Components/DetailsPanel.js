@@ -1,6 +1,14 @@
 import React from 'react';
 import WPMotesTracker from './WPMotesTracker';
 
+const mapStateToProps = (state, ownProps) => ({
+
+});
+
+const mapDispatchToProps = ({
+
+});
+
 const DefaultPanel = (props) => {
     console.log(props.gameState);
     let parts = props.gameState.pieces.map((piece, i) => {
@@ -20,4 +28,4 @@ const DefaultPanel = (props) => {
     )
 }
 
-export default DefaultPanel;
+export default connect(mapStateToProps, mapDispatchToProps)(DefaultPanel);

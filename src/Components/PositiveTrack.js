@@ -1,6 +1,14 @@
 import React from 'react';
 import TrackStep from './TrackStep';
 
+const mapStateToProps = (state, ownProps) => ({
+
+});
+
+const mapDispatchToProps = ({
+
+});
+
 const PositiveTrack = (props) => {
     let steps = [];
     for(let i = 30; i > 0; i--){
@@ -40,4 +48,4 @@ const PositiveTrack = (props) => {
     )
 }
 
-export default PositiveTrack;
+export default connect(mapStateToProps, mapDispatchToProps)(PositiveTrack);

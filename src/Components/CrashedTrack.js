@@ -2,6 +2,14 @@ import React from 'react';
 
 import TrackStep from './TrackStep';
 
+const mapStateToProps = (state, ownProps) => ({
+
+});
+
+const mapDispatchToProps = ({
+
+});
+
 const CrashedTrack = (props) => {
     let steps = [];
     for(let i = 0; i > -21; i--){
@@ -41,4 +49,4 @@ const CrashedTrack = (props) => {
     )
 }
 
-export default CrashedTrack;
+export default connect(mapStateToProps, mapDispatchToProps)(CrashedTrack);

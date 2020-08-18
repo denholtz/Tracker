@@ -1,5 +1,13 @@
 import React from 'react';
 
+const mapStateToProps = (state, ownProps) => ({
+
+});
+
+const mapDispatchToProps = ({
+
+});
+
 const WPMotesTracker = (props) => {
   return (
     <span>
@@ -8,4 +16,4 @@ const WPMotesTracker = (props) => {
   )
 }
 
-export default WPMotesTracker;
+export default connect(mapStateToProps, mapDispatchToProps)(WPMotesTracker);

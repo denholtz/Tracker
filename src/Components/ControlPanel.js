@@ -5,6 +5,15 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faRecycle} from '@fortawesome/free-solid-svg-icons';
 
 import DetailsPanel from './DetailsPanel';
+import { connect } from 'socket.io-client';
+
+const mapStateToProps = (state, ownProps) => ({
+
+});
+
+const mapDispatchToProps = ({
+
+});
 
 const ControlPanel = (props) => {
 
@@ -72,4 +81,4 @@ const ControlPanel = (props) => {
     )
 }
 
-export default ControlPanel;
+export default connect(mapStateToProps, mapDispatchToProps)(ControlPanel);

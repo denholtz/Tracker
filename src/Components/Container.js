@@ -11,6 +11,14 @@ const DEFAULT_GAMESTATE = {
   round: 1
 }
 
+const mapStateToProps = (state, ownProps) => ({
+
+});
+
+const mapDispatchToProps = ({
+
+});
+
 class Container extends React.Component {
     state = {
         name: '',
@@ -217,4 +225,4 @@ class Container extends React.Component {
     }
 }
 
-export default Container;
+export default connect(mapStateToProps, mapDispatchToprops)(Container);
