@@ -215,29 +215,9 @@ class Container extends React.Component {
                     />
                 </div>
 
-<<<<<<< HEAD
-
-
-                <div id='positive-track'>
-                    <PositiveTrack
-                        addPiece={this.addPiece}
-                        gameState={this.state.gameState}
-                        movePiece={this.movePiece}
-                    />
-                </div>
-
-                <div id='crashed-track'>
-                    <CrashedTracked
-                        addPiece={this.addPiece}
-                        gameState={this.state.gameState}
-                        movePiece={this.movePiece}
-                    />
-                </div>
-
-=======
-                <Track 
-                    start={30} 
-                    end={1} 
+                <Track
+                    start={30}
+                    end={1}
                     innerProps={{gridContainerClassName: 'positive-track'}}
                     addPiece={this.addPiece}
                     gameState={this.state.gameState}
@@ -258,7 +238,6 @@ class Container extends React.Component {
                     handleDragTargetUpdate={this.handleDragTargetUpdate}
                     handleDragTargetHide={this.handleDragTargetHide}
                 />
->>>>>>> 3f8118d5a9254b3bc9d9e90dbbd7689db1fabe68
             </React.Fragment>
         )
     }
