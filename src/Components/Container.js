@@ -176,6 +176,24 @@ class Container extends React.Component {
         })
     }
 
+    updatePiece = (changedPieceID, attribute, value) => {
+      console.log(`(updatePiece) ${changedPieceID} change ${attribute} to ${value}`)
+      let newPieces = [...this.state.gameState.pieces];
+      newPieces.forEach((piece, i) => {
+        if (piece.id === changedPieceID) {
+            piece[attribute] = value;
+        }
+      });
+
+      this.setStateAndEmit({
+          ...this.state,
+          gameState: {
+              ...this.state.gameState,
+              pieces: newPieces
+          }
+      })
+    }
+
     render = (props) => {
         return (
             <React.Fragment>
@@ -184,6 +202,7 @@ class Container extends React.Component {
                         name={this.state.name}
                         color={this.state.color}
                         handleChange={this.handleChange}
+                        updatePiece={this.updatePiece}
                         clearGameState={this.clearGameState}
                         deletePiece={this.deletePiece}
                         round={this.state.gameState.round}
