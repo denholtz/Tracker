@@ -4,6 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faRecycle} from '@fortawesome/free-solid-svg-icons';
 
+import DetailsPanel from './DetailsPanel';
+import { connect } from 'socket.io-client';
+
+const mapStateToProps = (state, ownProps) => ({
+
+});
+
+const mapDispatchToProps = ({
+
+});
+
 const ControlPanel = (props) => {
 
     const handleDragStart = (e) => {
@@ -12,7 +23,7 @@ const ControlPanel = (props) => {
 
     const handleDrop = (e) => {
         e.preventDefault(); // On Firefox, not doing this reloads the page at about:blank
-        
+
         let dragInfo = JSON.parse(e.dataTransfer.getData('text'));
 
         props.deletePiece(dragInfo.piece);
@@ -59,8 +70,15 @@ const ControlPanel = (props) => {
             <button onClick={props.decrementRound}>
                 Go Back In Time
             </button>
+
+            <div id='details-panel'>
+                <DetailsPanel
+                    gameState={props.gameState}
+                    handleNotesChange={props.handleNotesChange}
+                />
+            </div>
         </React.Fragment>
     )
 }
 
-export default ControlPanel;
+export default connect(mapStateToProps, mapDispatchToProps)(ControlPanel);

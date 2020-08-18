@@ -42,7 +42,17 @@ div{
   font-size: 6vh;
 }
 
-/* #positive-track{
+#details-panel {
+  background-color: lightblue;
+  align-items: left;
+  text-align: left;
+}
+
+#details-list {
+  list-style-type: none;
+}
+
+#positive-track{
   flex-basis: calc(30% - 44px);
   height: calc(100% - 40px);
 } */
@@ -82,6 +92,10 @@ div{
   font-size: 2vh;
   margin: 0px 2px;
   cursor: grab;
+}
+
+.wpmCounter {
+  width: 40px;
 }
 
 /* mediumm screen */

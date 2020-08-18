@@ -2,6 +2,14 @@ import React from 'react';
 
 import Piece from './Piece';
 
+const mapStateToProps = (state, ownProps) => ({
+
+});
+
+const mapDispatchToProps = ({
+
+});
+
 const TrackStep = (props) => {
 
     const onDragOver = (e) => {
@@ -55,4 +63,4 @@ const TrackStep = (props) => {
     )
 }
 
-export default TrackStep;
+export default connect(mapStateToProps, mapDispatchToProps)(TrackStep);

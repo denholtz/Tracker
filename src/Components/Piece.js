@@ -1,6 +1,14 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+const mapStateToProps = (state, ownProps) => ({
+
+});
+
+const mapDispatchToProps = ({
+
+});
+
 const Piece = (props) => {
     //
     const handleDragStart = (e) => {
@@ -47,4 +55,4 @@ const Piece = (props) => {
     )
 }
 
-export default Piece;
+export default connect(mapStateToProps, mapDispatchToProps)(Piece);
