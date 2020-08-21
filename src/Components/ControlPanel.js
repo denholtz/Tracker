@@ -72,7 +72,7 @@ const ControlPanel = (props) => {
 
             <div id='details-panel'>
                 <DetailsPanel
-                    gameState={props.gameState}
+                    // gameState={props.gameState}
                     handleNotesChange={props.handleNotesChange}
                     updatePiece={props.updatePiece}
                 />
