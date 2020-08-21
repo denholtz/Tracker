@@ -154,7 +154,6 @@ export const prevRound = () => {
 
 export const clearGameState = () => {
   return (dispatch, getState) => {
-    const state = getState()
     let newGameState = DEFAULT_GAMESTATE;
     socket.emit('update', newGameState);
     dispatch(setGameState(newGameState));

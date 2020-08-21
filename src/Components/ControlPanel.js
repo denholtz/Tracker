@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import { setName, setColor, deletePiece, newRound, prevRound } from '../Redux/actions';
+import { setName, setColor, deletePiece, newRound, prevRound, clearGameState } from '../Redux/actions';
 import DetailsPanel from './DetailsPanel';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -18,7 +18,8 @@ const mapDispatchToProps = ({
   setColor,
   deletePiece,
   newRound,
-  prevRound
+  prevRound,
+  clearGameState
 });
 
 const ControlPanel = (props) => {
@@ -44,6 +45,12 @@ const ControlPanel = (props) => {
 
   const onDragOver = (e) => {
       e.preventDefault();
+  }
+
+  const clearGameState = () => {
+      if (window.confirm('Really clear the game state? There\'s no going back.')) {
+          props.clearGameState();
+      }
   }
 
   return(
@@ -72,7 +79,7 @@ const ControlPanel = (props) => {
               <FontAwesomeIcon title='Drag a Piece Here to Delete It' className='control-panel-icon' icon={faTrash}/>
           </div>
 
-          <button onClick={props.clearGameState}>
+          <button onClick={clearGameState}>
               Clear Game
           </button>
 

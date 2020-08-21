@@ -14,14 +14,11 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = ({
-  clearGameState
 });
 
 class Container extends React.Component {
+    // This is only used for dragging stuff now I believe...
     state = {
-        name: '',
-        color: '#000000',
-        gameState: {},
         dragTargetState: {
             top: 0,
             left: 0,
@@ -29,8 +26,6 @@ class Container extends React.Component {
             value: 0
         }
     }
-    //
-    // componentDidMount = () => { }
 
     handleDragTargetUpdate = (e, value) => {
         console.log('update');
@@ -47,169 +42,21 @@ class Container extends React.Component {
         this.setState({...this.state, dragTargetState: {...this.state.dragTargetState, display: 'none'}});
     }
 
-    // handleChange = (e) => {
-    //     this.setState({
-    //         ...this.state,
-    //         [e.target.name]: e.target.value
-    //     })
-    // }
-
-    // setStateAndEmit = (state) => {
-    //     this.setState(state);
-    //     this.state.socket.emit('update', state.gameState);
-    // }
-
-    // addPiece = (piece) => {
-        // if(!this.state.name || !this.state.color) return;
-        // let newPiece = {
-        //     ...piece,
-        //     id: uuidv4(),
-        //     color: this.state.color,
-        //     name: this.state.name,
-        //     wp: 5,
-        //     motes: 0,
-        //     notes: ''
-        // };
-        //
-        // let nextState = {
-        //     ...this.state,
-        //     gameState: {
-        //         ...this.state.gameState,
-        //         pieces: [
-        //             ...this.state.gameState.pieces,
-        //             newPiece
-        //         ]
-        //     }
-        // }
-        // this.setStateAndEmit(nextState);
-    // }
-
-    // movePiece = (piece) => {
-    //     let pieces = [...this.state.gameState.pieces];
-    //
-    //     pieces.forEach((e, i) => {
-    //         if(e.id === piece.id){
-    //             console.log(`Moved piece from ${e.initiative} to ${piece.initiative} `)
-    //             if (e.initiative <= 0 && piece.initiative > 0) {
-    //                 console.log(`Piece ${e.name} has recovered from crash`)
-    //                 piece.mostRecentCrashRecovery = this.state.gameState.round;
-    //             }
-    //             if (e.initiative > 0 && piece.initiative <= 0) {
-    //                 console.log(`Piece ${e.name} gets crashed`)
-    //                 piece.mostRecentCrash = this.state.gameState.round;
-    //                 piece.hadActedAtCrash = piece.acted;
-    //             }
-    //             pieces[i] = piece;
-    //         }
-    //     })
-    //
-    //     let nextState = {
-    //         ...this.state,
-    //         gameState: {
-    //             ...this.state.gameState,
-    //             pieces
-    //         }
-    //     }
-    //
-    //     this.setStateAndEmit(nextState);
-    // }
-
-    // deletePiece = (piece) => {
-    //     let pieces = this.state.gameState.pieces.filter(e => e.id !== piece.id);
-    //
-    //     let nextState = {
-    //         ...this.state,
-    //         gameState: {
-    //             ...this.state.gameState,
-    //             pieces
-    //         }
-    //     }
-    //
-    //     this.setStateAndEmit(nextState);
-    // }
-
-
-
-    // topOfTheRound = () => {
-    //     let newPieces = this.state.gameState.pieces.map((piece) => {
-    //         return {
-    //            ...piece,
-    //            acted: false
-    //         }
-    //     })
-    //     this.setStateAndEmit({
-    //       ...this.state,
-    //       gameState: {
-    //         ...this.state.gameState,
-    //         pieces: newPieces,
-    //         round: this.state.gameState.round + 1
-    //       }
-    //
-    //     });
-    // }
-
-    // decrementRound = () => {
-    //     if (this.state.gameState.round <= 1) {
-    //         return;
-    //     }
-    //     this.setStateAndEmit({
-    //         ...this.state,
-    //         gameState: {
-    //           ...this.state.gameState,
-    //           round: this.state.gameState.round - 1
-    //         }
-    //     });
-    // }
-
-    // updatePiece = (changedPieceID, attribute, value) => {
-    //   let newPieces = [...this.state.gameState.pieces];
-    //   newPieces.forEach((piece, i) => {
-    //     if (piece.id === changedPieceID) {
-    //         piece[attribute] = value;
-    //     }
-    //   });
-    //
-    //   this.setStateAndEmit({
-    //       ...this.state,
-    //       gameState: {
-    //           ...this.state.gameState,
-    //           pieces: newPieces
-    //       }
-    //   })
-    // }
-
     render = () => {
-        console.log('rendering container, props are', this.props);
-        const clearGameState = () => {
-            if (window.confirm('Really clear the game state? There\'s no going back.')) {
-                this.props.clearGameState();
-            }
-        }
         return (
             <React.Fragment>
                 <DragTarget dragTargetState={this.state.dragTargetState}/>
                 <div id='control-panel'>
-                    <ControlPanel
-                        //name={this.state.name}
-                        //color={this.state.color}
-                        //updatePiece={this.updatePiece}
-                        clearGameState={clearGameState}
-                        // deletePiece={this.deletePiece}
-                        //round={this.state.gameState.round}
-                        // topOfTheRound={this.topOfTheRound}
-                        // decrementRound={this.decrementRound}
-                        //gameState={this.props.gameState}
-                        //handleNotesChange={this.handleNotesChange}
-                    />
+                    <ControlPanel />
                 </div>
 
                 <Track
                     start={30}
                     end={1}
                     innerProps={{gridContainerClassName: 'positive-track'}}
-                    addPiece={this.addPiece}
-                    gameState={this.state.gameState}
-                    movePiece={this.movePiece}
+                    // addPiece={this.addPiece}
+                    // gameState={this.state.gameState}
+                    // movePiece={this.movePiece}
                     dragTargetRef={dragTargetRef}
                     handleDragTargetUpdate={this.handleDragTargetUpdate}
                     handleDragTargetHide={this.handleDragTargetHide}
@@ -219,9 +66,9 @@ class Container extends React.Component {
                     start={0}
                     end={-20}
                     innerProps={{gridContainerClassName: 'positive-track'}}
-                    addPiece={this.addPiece}
-                    gameState={this.state.gameState}
-                    movePiece={this.movePiece}
+                    // addPiece={this.addPiece}
+                    // movePiece={this.movePiece}
+                    // gameState={t/his.state.gameState}
                     dragTargetRef={dragTargetRef}
                     handleDragTargetUpdate={this.handleDragTargetUpdate}
                     handleDragTargetHide={this.handleDragTargetHide}
