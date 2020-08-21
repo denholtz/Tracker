@@ -1,14 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { updatePiece, addPiece } from '../Redux/actions'
 
 import Piece from './Piece';
 
 const mapStateToProps = (state, ownProps) => ({
-
+  gameState: state.gameState,
+  name: state.name,
+  color: state.color,
 });
 
 const mapDispatchToProps = ({
-
+  updatePiece,
+  addPiece
 });
 
 const TrackStep = (props) => {
@@ -22,19 +26,24 @@ const TrackStep = (props) => {
 
         let dragInfo = JSON.parse(e.dataTransfer.getData('text'));
 
-        if(dragInfo.type === 'add'){
-            props.addPiece({
-                initiative: props.initiative,
-                acted: props.acted
-            })
+        if (dragInfo.type === 'add') {
+          let newPiece = {
+              initiative: props.initiative,
+              acted: props.acted,
+              name: props.name,
+              color: props.color,
+              motes: 0,
+              wp: 5,
+              notes: '',
+          }
+          console.log('Trackstep created piece', newPiece);
+          props.addPiece(newPiece);
         }
 
-        else if(dragInfo.type === 'move') {
-            props.movePiece({
-                ...dragInfo.piece,
-                initiative: props.initiative,
-                acted: props.acted
-            });
+        else if (dragInfo.type === 'move') {          
+          props.updatePiece(dragInfo.piece.id, 'initiative', props.initiative);
+          props.updatePiece(dragInfo.piece.id, 'acted', props.acted);
+
         }
     }
 
@@ -51,12 +60,11 @@ const TrackStep = (props) => {
                                                                     key={i}
                                                                     piece={e}
                                                                     nextToAct={nextToAct}/>) : '';
-
     return (
-        <div 
-            // onDragEnter={props.onDragEnter} 
-            onDragOver={onDragOver} 
-            onDrop={handleDrop} 
+        <div
+            // onDragEnter={props.onDragEnter}
+            onDragOver={onDragOver}
+            onDrop={handleDrop}
             style={{textAlign: props.acted ? 'left' : 'right'}}
         >
             {content}

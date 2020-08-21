@@ -11,7 +11,6 @@ const mapDispatchToProps = ({
 });
 
 const WPMotesTracker = (props) => {
-  console.log('WPMotesTracker rerendering');
   const moteChange = (e) => {
     let motesValue = e.target.value * 1;
     props.updatePiece(props.piece.id, 'motes', motesValue)
@@ -43,6 +42,5 @@ const WPMotesTracker = (props) => {
     </div>
   )
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(WPMotesTracker);
