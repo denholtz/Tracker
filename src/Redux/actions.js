@@ -18,7 +18,7 @@ export const setName = (name) => ({
 })
 export const setColor = (color) => ({
   type: SET_COLOR,
-  name: color
+  color: color
 })
 
 export const deletePiece = (pieceToDelete) => {
