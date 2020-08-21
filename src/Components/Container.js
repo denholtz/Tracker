@@ -5,7 +5,7 @@ import ControlPanel from './ControlPanel';
 import Track from './Track';
 import DragTarget from './DragTarget';
 import { v4 as uuidv4 } from 'uuid';
-import io from 'socket.io-client';
+
 
 const DEFAULT_GAMESTATE = {
   pieces: [],
@@ -14,12 +14,10 @@ const DEFAULT_GAMESTATE = {
 
 let dragTargetRef = React.createRef();
 const mapStateToProps = (state, ownProps) => ({
-
+  gameState: state.gameState
 });
 
-const mapDispatchToProps = ({
-
-});
+const mapDispatchToProps = ({});
 
 class Container extends React.Component {
     state = {
@@ -34,19 +32,7 @@ class Container extends React.Component {
         }
     }
 
-    componentDidMount = () => {
-        // fetch initial game state
-        let socketServer = window.location.origin === 'http://localhost:3000' ?
-                           'http://localhost:3001' :
-                           window.location.origin;
-        let socket = io(socketServer);
-        socket.on('update', gameState => {
-            console.log('Got new state from server');
-            console.log(gameState)
-            this.setState({...this.state, gameState});
-        })
-        this.setState({...this.state, socket})
-    }
+    componentDidMount = () => { }
 
     handleDragTargetUpdate = (e, value) => {
         console.log('update');
@@ -218,7 +204,7 @@ class Container extends React.Component {
                         round={this.state.gameState.round}
                         topOfTheRound={this.topOfTheRound}
                         decrementRound={this.decrementRound}
-                        gameState={this.state.gameState}
+                        gameState={this.props.gameState}
                         handleNotesChange={this.handleNotesChange}
                     />
                 </div>
