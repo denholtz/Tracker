@@ -20,9 +20,9 @@ const Track = (props) => {
                     <TrackStep
                         initiative={e}
                         acted={false}
-                        addPiece={props.addPiece}
-                        movePiece={props.movePiece}
-                        gameState={props.gameState}
+                        // addPiece={props.addPiece}
+                        // movePiece={props.movePiece}
+                        // gameState={props.gameState}
                         onDragEnter={(event) => props.handleDragTargetUpdate(event, e)}
                         onDragLeave={props.handleDragTargetHide}
                     />
@@ -30,9 +30,9 @@ const Track = (props) => {
                     <TrackStep
                         initiative={e}
                         acted={true}
-                        addPiece={props.addPiece}
-                        movePiece={props.movePiece}
-                        gameState={props.gameState}
+                        // addPiece={props.addPiece}
+                        // gameState={props.gameState}
+                        // movePiece={p/rops.movePiece}
                         onDragEnter={(event) => props.handleDragTargetUpdate(event, e)}
                         onDragLeave={props.handleDragTargetHide}
                     />
