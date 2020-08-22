@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const mapStateToProps = (state, ownProps) => ({
+
 });
 
 const mapDispatchToProps = ({
@@ -10,7 +10,6 @@ const mapDispatchToProps = ({
 });
 
 const Piece = (props) => {
-    //
     const handleDragStart = (e) => {
         e.dataTransfer.setData('text', JSON.stringify({type: 'move', piece: props.piece}));
     }
