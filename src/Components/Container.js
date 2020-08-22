@@ -14,6 +14,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = ({
+
 });
 
 class Container extends React.Component {
@@ -54,9 +55,6 @@ class Container extends React.Component {
                     start={30}
                     end={1}
                     innerProps={{gridContainerClassName: 'positive-track'}}
-                    // addPiece={this.addPiece}
-                    // gameState={this.state.gameState}
-                    // movePiece={this.movePiece}
                     dragTargetRef={dragTargetRef}
                     handleDragTargetUpdate={this.handleDragTargetUpdate}
                     handleDragTargetHide={this.handleDragTargetHide}
@@ -66,9 +64,6 @@ class Container extends React.Component {
                     start={0}
                     end={-20}
                     innerProps={{gridContainerClassName: 'positive-track'}}
-                    // addPiece={this.addPiece}
-                    // movePiece={this.movePiece}
-                    // gameState={t/his.state.gameState}
                     dragTargetRef={dragTargetRef}
                     handleDragTargetUpdate={this.handleDragTargetUpdate}
                     handleDragTargetHide={this.handleDragTargetHide}
