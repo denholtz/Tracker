@@ -23,19 +23,19 @@ const PositiveTrack = (props) => {
                     {steps.map((e, i) => (
                         <tr key={e} className='tracker-table-row'>
                             <td>
-                                <TrackStep 
-                                    initiative={e} 
-                                    acted={false} 
+                                <TrackStep
+                                    initiative={e}
+                                    acted={false}
                                     addPiece={props.addPiece}
                                     movePiece={props.movePiece}
-                                    gameState={props.gameState}                                    
+                                    gameState={props.gameState}
                                 />
                             </td>
                             <td className='tracker-section'>{e % 2 === 0 ? e : ''}</td>
                             <td>
-                                <TrackStep 
-                                    initiative={e} 
-                                    acted={true} 
+                                <TrackStep
+                                    initiative={e}
+                                    acted={true}
                                     addPiece={props.addPiece}
                                     movePiece={props.movePiece}
                                     gameState={props.gameState}
@@ -49,4 +49,5 @@ const PositiveTrack = (props) => {
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PositiveTrack);
+// Not used anywhere?
+//export default connect(mapStateToProps, mapDispatchToProps)(PositiveTrack);

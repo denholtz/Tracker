@@ -24,9 +24,9 @@ const CrashedTrack = (props) => {
                     {steps.map((e, i) => (
                         <tr key={e} className='tracker-table-row'>
                             <td>
-                                <TrackStep 
-                                    initiative={e} 
-                                    acted={false} 
+                                <TrackStep
+                                    initiative={e}
+                                    acted={false}
                                     addPiece={props.addPiece}
                                     movePiece={props.movePiece}
                                     gameState={props.gameState}
@@ -34,9 +34,9 @@ const CrashedTrack = (props) => {
                             </td>
                             <td className='tracker-section'>{e % 2 === 0 ? e : ''}</td>
                             <td>
-                                <TrackStep 
-                                    initiative={e} 
-                                    acted={true} 
+                                <TrackStep
+                                    initiative={e}
+                                    acted={true}
                                     addPiece={props.addPiece}
                                     movePiece={props.movePiece}
                                     gameState={props.gameState}
@@ -50,4 +50,5 @@ const CrashedTrack = (props) => {
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CrashedTrack);
+//Not used anywhere?
+//export default connect(mapStateToProps, mapDispatchToProps)(CrashedTrack);

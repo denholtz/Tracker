@@ -1,31 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import { updatePiece } from "../Redux/actions";
 import WPMotesTracker from './WPMotesTracker';
 
-const mapStateToProps = (state, ownProps) => ({
-
-});
+const mapStateToProps = (state, ownProps) => {
+  return {
+    gameState: state.gameState,
+  };
+};
 
 const mapDispatchToProps = ({
-
+  updatePiece
 });
 
 const DetailsPanel = (props) => {
-    const updateNotes = (e) => {
-        let newNote = e.target.value;
-        let changedPieceID = e.target.name.split('$')[0];
-        props.updatePiece(changedPieceID, 'notes', newNote)
-    }
-
     let parts = props.gameState.pieces.map((piece, i) => {
-      let name = `${piece.id}$notes`
-      let notes = piece.notes ? piece.notes : '';
-      return <div key={i}>
-                 [{piece.initiative}] {piece.name} <WPMotesTracker piece={piece} updatePiece={props.updatePiece}
-/>
-                 <br />
-                 <textarea value={notes} type='textarea'  onChange={updateNotes} name={name}/>
+      return <div key={i}  className='wp-motes-tracker'>
+                 [{piece.initiative}] {piece.name}
+                 <WPMotesTracker piece={piece}/>
+
              </div>;
     })
     return (
