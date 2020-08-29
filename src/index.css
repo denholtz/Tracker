@@ -43,13 +43,20 @@ div{
 }
 
 #details-panel {
-  background-color: lightblue;
+  background-color: #ededed;
   align-items: left;
   text-align: left;
+  margin-top: 16px;
+  padding: 4px;
+  border-radius: 4px;
 }
 
 #details-list {
   list-style-type: none;
+}
+
+.wp-motes-tracker {
+  margin-top: 6px
 }
 
 .positive-track{
