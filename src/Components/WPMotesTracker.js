@@ -1,24 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updatePiece } from "../Redux/actions";
+import { updatePiece, setNumberSelectModalTarget} from "../Redux/actions";
 
 const mapStateToProps = (state, ownProps) => {
   return ownProps;
 };
 
 const mapDispatchToProps = ({
-  updatePiece
+  updatePiece,
+  setNumberSelectModalTarget
 });
 
 const WPMotesTracker = (props) => {
-  const moteChange = (e) => {
-    let motesValue = e.target.value * 1;
-    props.updatePiece(props.piece.id, 'motes', motesValue)
-  }
-  const wpChange = (e) => {
-    let wpValue = e.target.value * 1;
-    props.updatePiece(props.piece.id, 'wp', wpValue)
-  }
+  // const moteChange = (e) => {
+  //   let motesValue = e.target.value * 1;
+  //   props.updatePiece(props.piece.id, 'motes', motesValue)
+  // }
+  // const wpChange = (e) => {
+  //   let wpValue = e.target.value * 1;
+  //   props.updatePiece(props.piece.id, 'wp', wpValue)
+  // }
   const notesChange = (e) => {
     let notesValue = e.target.value;
     props.updatePiece(props.piece.id, 'notes', notesValue)
@@ -26,18 +27,33 @@ const WPMotesTracker = (props) => {
 
   return (
     <div>
-      <span>
+      {/* <span>
         <input type="number"
                value={props.piece.motes}
                className="wpmCounter"
                max="999"
-               onChange={moteChange}/> m
+               onChange={() => {}}
+               /> m
         <input type="number"
                value={props.piece.wp}
                className="wpmCounter"
                max="999"
-               onChange={wpChange} /> wp
-      </span>
+               onChange={() => {}}
+              /> wp
+      </span> */}
+      <div 
+        className='wpm-counter-input'
+        onClick={() => props.setNumberSelectModalTarget(props.piece.id, 'motes')}
+      >
+        {props.piece.motes} m
+      </div>
+
+      <div 
+        className='wpm-counter-input'
+        onClick={() => props.setNumberSelectModalTarget(props.piece.id, 'wp')}
+      >
+        {props.piece.wp} wp  
+      </div>
       <textarea value={props.piece.notes} type='textarea' onChange={notesChange} />
     </div>
   )

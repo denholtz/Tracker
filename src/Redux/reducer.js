@@ -1,4 +1,4 @@
-import { SET_GAME_STATE, SET_NAME, SET_COLOR } from "./actionTypes";
+import { SET_GAME_STATE, SET_NAME, SET_COLOR, SET_NUMBER_SELECT_MODAL_TARGET } from "./actionTypes";
 
 export const DEFAULT_GAMESTATE = {
   pieces: [],
@@ -15,7 +15,8 @@ export const DEFAULT_STATE = {
       left: 0,
       display: 'none',
       value: 0
-    }
+    },
+    numberSelectModalTarget: null // {pieceID, attribute} when set
 }
 
 export default function(state, action) {
@@ -43,6 +44,11 @@ export default function(state, action) {
         ...state,
         color: color
       };
+    }
+
+    case SET_NUMBER_SELECT_MODAL_TARGET: {
+      const target = action.target;
+      return {...state, numberSelectModalTarget: target}
     }
 
     default: {

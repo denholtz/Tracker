@@ -1,4 +1,4 @@
-import { SET_GAME_STATE, SET_NAME, SET_COLOR } from "./actionTypes";
+import { SET_GAME_STATE, SET_NAME, SET_COLOR, SET_NUMBER_SELECT_MODAL_TARGET } from "./actionTypes";
 import { DEFAULT_GAMESTATE } from "./reducer"
 import io from 'socket.io-client';
 import store from './store';
@@ -21,6 +21,14 @@ export const setColor = (color) => ({
   type: SET_COLOR,
   color: color
 })
+
+export const setNumberSelectModalTarget = (pieceID, attribute) => ({
+    type: SET_NUMBER_SELECT_MODAL_TARGET,
+    target: {
+      pieceID,
+      attribute
+  }
+});
 
 export const deletePiece = (pieceToDelete) => {
   return (dispatch, getState) => {

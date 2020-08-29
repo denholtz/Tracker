@@ -89,6 +89,8 @@ div{
 .modal-number-select-number {
   cursor: pointer;
   box-shadow: rgb(240, 240, 240) 1px 2px;
+  display: grid;
+  align-content: center;
 }
 
 .modal-number-select-number:hover {
@@ -129,6 +131,17 @@ div{
 
 .wpmCounter {
   width: 40px;
+}
+
+.wpm-counter-input {
+  display: inline-flex;
+  width: 60px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 2px;
+  margin: 2px 4px 2px 0;
+  justify-content: center;
+  cursor: pointer;
 }
 
 /* mediumm screen */
