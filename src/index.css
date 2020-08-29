@@ -58,6 +58,36 @@ div{
   grid-auto-rows: 1fr;
 }
 
+.ui-blocker {
+  background-color: rgba(0,0,0,.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#modal-number-select {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  /* grid-auto-rows: 1fr; */
+  box-sizing: border-box;
+  width: 70vw;
+  height: 80vh;
+  margin: 10vh 10vw 10vh 20vw;
+  background-color: whitesmoke;
+  border-radius: 4px;
+}
+
+.modal-number-select-number {
+  cursor: pointer;
+  box-shadow: rgb(240, 240, 240) 1px 2px;
+}
+
+.modal-number-select-number:hover {
+  background-color: rgba(209,185,72, .2);
+}
+
 .test{
   border: 1px solid pink;
   width: 100%;
