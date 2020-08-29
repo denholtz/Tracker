@@ -10,6 +10,7 @@ let socketServer = window.location.origin === 'http://localhost:3000' ?
 let socket = io(socketServer);
 socket.on('update', gameState => {
     store.dispatch(setGameState(gameState));
+    console.log('received udpate')
 });
 
 export const setName = (name) => ({
