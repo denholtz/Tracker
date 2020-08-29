@@ -6,6 +6,7 @@ import Track from './Track';
 import DragTarget from './DragTarget';
 import { v4 as uuidv4 } from 'uuid';
 import io from 'socket.io-client';
+import ModalNumberSelect from './ModalNumberSelect';
 
 const DEFAULT_GAMESTATE = {
   pieces: [],
@@ -206,6 +207,7 @@ class Container extends React.Component {
     render = (props) => {
         return (
             <React.Fragment>
+                <ModalNumberSelect/>
                 <DragTarget dragTargetState={this.state.dragTargetState}/>
                 <div id='control-panel'>
                     <ControlPanel
