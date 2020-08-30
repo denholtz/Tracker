@@ -32,7 +32,8 @@ const TrackStep = (props) => {
               acted: props.acted,
               name: props.name,
               color: props.color,
-              motes: 0,
+              peripheralMotes: 0,
+              personalMotes: 0,
               wp: 5,
               notes: '',
           }
@@ -40,7 +41,7 @@ const TrackStep = (props) => {
           props.addPiece(newPiece);
         }
 
-        else if (dragInfo.type === 'move') {          
+        else if (dragInfo.type === 'move') {
           props.updatePiece(dragInfo.piece.id, 'initiative', props.initiative);
           props.updatePiece(dragInfo.piece.id, 'acted', props.acted);
 

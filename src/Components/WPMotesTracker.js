@@ -41,18 +41,26 @@ const WPMotesTracker = (props) => {
                onChange={() => {}}
               /> wp
       </span> */}
-      <div 
+      <div
         className='wpm-counter-input'
-        onClick={() => props.setNumberSelectModalTarget(props.piece.id, 'motes')}
+        onClick={() => props.setNumberSelectModalTarget(props.piece.id, 'personalMotes')}
       >
-        {props.piece.motes} m
+        {props.piece.personalMotes} m
+        <span className='wpm-counter-detail'> (personal) </span>
+      </div>
+      <div
+        className='wpm-counter-input'
+        onClick={() => props.setNumberSelectModalTarget(props.piece.id, 'peripheralMotes')}
+      >
+        {props.piece.peripheralMotes} m
+        <span className='wpm-counter-detail'> (peripheral) </span>
       </div>
 
-      <div 
+      <div
         className='wpm-counter-input'
         onClick={() => props.setNumberSelectModalTarget(props.piece.id, 'wp')}
       >
-        {props.piece.wp} wp  
+        {props.piece.wp} wp
       </div>
       <textarea value={props.piece.notes} type='textarea' onChange={notesChange} />
     </div>
