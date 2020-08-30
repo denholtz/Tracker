@@ -6,7 +6,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 let socketServer = window.location.origin === 'http://localhost:3000' ?
                    'http://localhost:3001' :
-                   window.location.origin;
+                   `${window.location.protocol}//${window.location.hostname}:3001`;
+console.log(socketServer);
+
 let socket = io(socketServer);
 socket.on('update', gameState => {
     store.dispatch(setGameState(gameState));
