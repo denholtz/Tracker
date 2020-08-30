@@ -14,16 +14,17 @@ const mapDispatchToProps = ({
 });
 
 const DetailsPanel = (props) => {
-    let parts = props.gameState.pieces.map((piece, i) => {
-      return <div key={i}  className='wp-motes-tracker'>
-                 [{piece.initiative}] {piece.name}
-                 <WPMotesTracker piece={piece}/>
 
+    let parts = props.gameState.pieces.map((piece, i) => {
+      let style = {color: piece.color};
+      return <div key={i}  className='wp-motes-tracker'>
+                 [{piece.initiative}] <span style={style}> {piece.name} </span>
+                 <WPMotesTracker piece={piece}/>
              </div>;
     })
     return (
       <div>
-        <span>Details Panel!</span>
+        {parts.length > 0 ? '' : <span>Details Panel!</span>}
         {parts}
       </div>
     )
